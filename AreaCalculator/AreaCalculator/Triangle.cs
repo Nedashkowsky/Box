@@ -1,19 +1,11 @@
-using System.ComponentModel.DataAnnotations;
+using AreaCalculator.Extensions;
 
 namespace AreaCalculator;
 
 public class Triangle : Shape
 {
-    [Range(0, Double.MaxValue, ErrorMessage = "Value must be range between 0 to Double.MaxValue",
-        ErrorMessageResourceType = typeof(ArgumentException))]
     private readonly double _a;
-
-    [Range(0, Double.MaxValue, ErrorMessage = "Value must be range between 0 to Double.MaxValue",
-        ErrorMessageResourceType = typeof(ArgumentException))]
     private readonly double _b;
-
-    [Range(0, Double.MaxValue, ErrorMessage = "Value must be range between 0 to Double.MaxValue",
-        ErrorMessageResourceType = typeof(ArgumentException))]
     private readonly double _c;
 
     public Triangle(double a, double b, double c)
@@ -23,8 +15,12 @@ public class Triangle : Shape
         _c = c;
     }
 
-    public override double CalculateShape()
+    public override double CalculateArea()
     {
+        _a.Validate();
+        _b.Validate();
+        _c.Validate();
+        
         var p = (_a + _b + _c) / 2;
 
         return Math.Sqrt(p * (p - _a) * (p - _b) * (p - _c));
@@ -32,9 +28,13 @@ public class Triangle : Shape
 
     public bool IsRectangular()
     {
+        _a.Validate();
+        _b.Validate();
+        _c.Validate();
+        
         var sides = new[] { _a, _b, _c };
         Array.Sort(sides);
 
-        return Math.Pow(sides[0], 2) + Math.Pow(sides[1], 2) > Math.Pow(sides[3], 2);
+        return Math.Pow(sides[0], 2) + Math.Pow(sides[1], 2) == Math.Pow(sides[2], 2);
     }
 }

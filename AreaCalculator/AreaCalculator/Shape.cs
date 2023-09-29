@@ -2,5 +2,5 @@
 
 public abstract class Shape
 {
-    public virtual double CalculateShape() => 0;
+    public virtual double CalculateArea() => 0;
 }
