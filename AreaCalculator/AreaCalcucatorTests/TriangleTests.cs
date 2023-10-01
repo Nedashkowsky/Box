@@ -21,8 +21,7 @@ public class TriangleTests
     [InlineData(0,0,0)]
     public void CalculateArea_InvalidInput_ThrowsError(double a, double b, double c)
     {
-        var triangle = new Triangle(a, b, c);
-        Assert.Throws<ArgumentException>(() => triangle.CalculateArea());
+        Assert.Throws<ArgumentException>(() => new Triangle(a, b, c));
     }
     
     [Theory]
@@ -30,8 +29,7 @@ public class TriangleTests
     [InlineData(Double.MinValue,2,1)]
     public void IsRectangular_InvalidInput_ThrowsError(double a, double b, double c)
     {
-        var triangle = new Triangle(a, b, c);
-        Assert.Throws<ArgumentException>(() => triangle.IsRectangular());
+        Assert.Throws<ArgumentException>(() => new Triangle(a, b, c));
     }
     
     [Theory]

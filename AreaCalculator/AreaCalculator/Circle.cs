@@ -8,12 +8,11 @@ public class Circle : Shape
 
     public Circle(double radius)
     {
+        if(radius.IsInvalid())
+            throw new ArgumentException("Invalid shape side value");
+        
         _radius = radius;
     }
 
-    public override double CalculateArea() 
-    {
-        _radius.Validate();
-        return Math.PI * Math.Pow(_radius, 2);
-    }
+    public override double CalculateArea() => Math.PI * _radius * _radius;
 }

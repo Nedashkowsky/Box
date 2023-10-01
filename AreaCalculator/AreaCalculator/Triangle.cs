@@ -4,37 +4,34 @@ namespace AreaCalculator;
 
 public class Triangle : Shape
 {
-    private readonly double _a;
-    private readonly double _b;
-    private readonly double _c;
+    private readonly double _first;
+    private readonly double _second;
+    private readonly double _third;
 
-    public Triangle(double a, double b, double c)
+    public Triangle(double first, double second, double third)
     {
-        _a = a;
-        _b = b;
-        _c = c;
+        if (first.IsInvalid() 
+             ||  second.IsInvalid()
+             || third.IsInvalid())
+            throw new ArgumentException("Invalid shape side value");
+
+        _first = first;
+        _second = second;
+        _third = third;
     }
 
     public override double CalculateArea()
     {
-        _a.Validate();
-        _b.Validate();
-        _c.Validate();
-        
-        var p = (_a + _b + _c) / 2;
+        var perimeter = (_first + _second + _third) / 2;
 
-        return Math.Sqrt(p * (p - _a) * (p - _b) * (p - _c));
+        return Math.Sqrt(perimeter * (perimeter - _first) * (perimeter - _second) * (perimeter - _third));
     }
 
     public bool IsRectangular()
     {
-        _a.Validate();
-        _b.Validate();
-        _c.Validate();
-        
-        var sides = new[] { _a, _b, _c };
+        var sides = new[] { _first, _second, _third };
         Array.Sort(sides);
 
-        return Math.Pow(sides[0], 2) + Math.Pow(sides[1], 2) == Math.Pow(sides[2], 2);
+        return sides[0] * sides[0] + sides[1] * sides[1] == sides[2] * sides[2];
     }
 }

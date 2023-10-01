@@ -2,10 +2,9 @@ namespace AreaCalculator.Extensions;
 
 public static class ValidationExtensions
 {
-    public static void Validate(this double number)
+    public static bool IsInvalid(this double number)
     {
-        if (number > Double.MaxValue
-            || number < 1)
-            throw new ArgumentException($"Invalid shape side value: {number}");
+        return number > Double.MaxValue 
+               || number <= 0;
     }
 }

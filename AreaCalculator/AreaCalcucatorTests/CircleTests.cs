@@ -22,7 +22,6 @@ public class CircleTests
     [InlineData(Double.MinValue)]
     public void CalculateArea_InvalidInput_ThrowsError(double radius)
     {
-        var circle = new Circle(radius);
-        Assert.Throws<ArgumentException>(() => circle.CalculateArea());
+        Assert.Throws<ArgumentException>(() => new Circle(radius));
     }
 }
